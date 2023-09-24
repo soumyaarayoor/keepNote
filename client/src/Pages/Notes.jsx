@@ -1,35 +1,24 @@
-import "./note.css"
+import "./note.css";
 
-const Note=()=>{
-return(
+import Form from "../Components/Form";
+import List from "../Components/List";
+import { useState } from "react";
+
+const Note = () => {
+  const [list, setList] = useState([]);
+  console.log(list);
+  return (
     <div className="note">
-        <div className="dataentry">
-                 <form className="form">
-                       <div className="text_container">
-                        <input type="text" placeholder="enter title"/>
-                        <textarea placeholder="describe your note">
-
-                        </textarea>
-                        
-
-                       </div>
-                       <div className="button_container">
-                            <button type="submit">SAVE</button>
-                            <button type="reset">CANCEL</button>
-                       </div>
-                 </form>
-        </div>
-        <div className="list_note">
-                <div className="list">
-
-                </div>
-        </div>
+      <div className="dataentry">
+        <Form setList={setList} />
+      </div>
+      <div className="list_note">
+        {list.map((note) => (
+          <List title={note.title} description={note.description} />
+        ))}
+      </div>
     </div>
-)
+  );
+};
 
-
-
-}
-
-
-export default Note
+export default Note;
